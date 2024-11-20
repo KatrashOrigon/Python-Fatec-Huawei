@@ -6,8 +6,8 @@
 numero = int(input("Digite um número inteiro: "))
 fatorial = 1
 
-while numero >= 1:
+while numero > 1:
 	fatorial = fatorial * numero
 	numero -= 1
 
-print(f"O fatorial de {numero} é {fatorial}.")
+print(f"O fatorial é {fatorial}.")
