@@ -12,8 +12,7 @@
 
 data = input("Digite uma data no formato aaaammdd: ")
 
-meses30 = [1, 3, 5, 7, 8, 10, 12]
-meses31 = [4, 6, 9, 7, 11]
+meses = [31, 00, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 if len(data) == 8:
 	if data.isnumeric():
@@ -23,14 +22,24 @@ if len(data) == 8:
 		if ano > 0:
 			if mes >=1 and mes <= 12:
 				validado = False
-				if (dia >= 1 and dia <= 30) and (dia in meses30):
-					print("ok")
+				if dia >= 1 and dia <= meses[mes-1]:
+					validado = True
+				elif mes == 2:
+					#Verifica se o ano é bissexto.
+					if (ano % 4 == 0 and ano % 100 != 0) or (ano % 400 == 0):
+						if dia >= 1 and dia <= 29:
+							validado = True
+					else:
+						if dia >= 1 and dia <= 28:
+							validado = True
+				if validado:
+						print(f"A data fornecida é: {dia:02}/{mes:02}/{ano:04}")
 				else:
-					print("Data inválida. Este mês deve ter 30 dias.")
+					print("Dia inválido.")
 			else:
-				print("O mês deve ser um valor entre 1 e 12.")
+				print("Mês inválido.")
 		else:
-			print("O ano deve ser maior que zero.")
+			print("Data inválida.")
 	else:
 		print("Um ou mais digitos não são numéricos.")
 else:
